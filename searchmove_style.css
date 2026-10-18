@@ -1,0 +1,610 @@
+/* ベーススタイル */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
+  background: #f5f5f5;
+  color: #222;
+  padding: 10px;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 0 0 10px 0;
+}
+
+.box {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 15px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.sub-input {
+  font-size: 14px;
+  padding: 7px 10px;
+  border-width: 1px;
+}
+
+ul {
+  padding-left: 18px;
+  margin: 10px 0;
+  list-style-type: none;
+}
+
+li {
+  line-height: 1.8;
+  font-size: 15px;
+  padding: 5px 0;
+}
+
+li.message {
+  color: #777;
+}
+
+.note {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.footer-note {
+  max-width: 900px;
+  margin: 15px auto 25px;
+  line-height: 1.7;
+}
+
+.count {
+  font-size: 13px;
+  color: #666;
+  margin-top: 8px;
+}
+
+/* ポケモン名リンク */
+.pokemon-link {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.pokemon-link:hover {
+  color: #2e6ab8;
+  text-decoration: underline;
+}
+
+.pokemon-link:visited {
+  color: #8b4a9e;
+}
+
+.pokemon-nolink {
+  color: #555;
+  border-bottom: 1px dotted #bbb;
+}
+
+.inline-types {
+  margin-left: 6px;
+}
+
+/* 候補チップ */
+.candidates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0 2px;
+}
+
+.chip {
+  font: inherit;
+  font-size: 13px;
+  padding: 3px 10px;
+  border: 1px solid #cfd8e3;
+  background: #f2f6fb;
+  color: #3a4a5c;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.chip:hover {
+  background: #e2ecf9;
+}
+
+.chip.active {
+  background: #4a90e2;
+  border-color: #4a90e2;
+  color: #fff;
+}
+
+.chip-more {
+  font-size: 12px;
+  color: #888;
+  align-self: center;
+}
+
+/* バージョン切り替え */
+.version-box {
+  padding-bottom: 10px;
+}
+
+.version-select {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+.version-select label {
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.version-select input {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: none;
+  accent-color: #4a90e2;
+}
+
+.version-note {
+  text-align: left;
+  margin: 8px 0 0;
+}
+
+.ver-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 0 7px;
+  margin-left: 5px;
+  border-radius: 3px;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.ver-altair { background: #fff1d9; color: #92600b; border-color: #edd39c; }
+.ver-sirius { background: #e6e2fb; color: #4b3ca0; border-color: #cbc3f0; }
+
+/* タイプ・分類バッジ */
+.type-badge {
+  display: inline-block;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 0 7px;
+  margin-left: 5px;
+  border-radius: 3px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.cat-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 0 7px;
+  margin-left: 5px;
+  border-radius: 3px;
+  vertical-align: middle;
+  border: 1px solid transparent;
+}
+
+.cat-physical { background: #ffe6e0; color: #b8402a; border-color: #f3c2b6; }
+.cat-special  { background: #e0ebff; color: #2f4f9e; border-color: #b9cdf3; }
+.cat-status   { background: #eceef0; color: #4c555c; border-color: #d3d8dc; }
+
+/* 技情報カード */
+.move-info {
+  margin-top: 10px;
+}
+
+.move-card {
+  border: 1px solid #e3e7eb;
+  border-left: 4px solid #4a90e2;
+  border-radius: 6px;
+  background: #fbfcfd;
+  padding: 10px 12px;
+  margin: 8px 0;
+}
+
+.move-card-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.move-card-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 2px;
+}
+
+.move-id-badge {
+  font-size: 11px;
+  color: #59636d;
+  background: #eef1f4;
+  border: 1px solid #d5dbe0;
+  border-radius: 10px;
+  padding: 1px 6px;
+  margin-left: 3px;
+}
+
+.learner-count {
+  font-size: 12px;
+  color: #777;
+  margin-left: 8px;
+}
+
+.move-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 8px;
+}
+
+.stat {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.stat-key {
+  color: #7a8288;
+  margin-right: 5px;
+}
+
+.stat-val {
+  font-weight: 600;
+}
+
+.move-spec {
+  margin-top: 7px;
+  font-size: 12.5px;
+  color: #8a5a10;
+  background: #fff6e2;
+  border: 1px solid #f0dcb4;
+  border-radius: 4px;
+  padding: 3px 8px;
+  display: inline-block;
+}
+
+.move-desc {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed #dfe4e8;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #333;
+  white-space: pre-line;
+}
+
+/* ポケモンのプロフィール */
+.profile {
+  margin-top: 6px;
+}
+
+.profile-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.profile-name {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.profile-meta {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* 技一覧の行 */
+.move-name {
+  display: inline-block;
+}
+
+.move-name.expandable {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.move-label {
+  border-bottom: 1px dotted #999;
+}
+
+.move-name.expandable:hover .move-label {
+  color: #000;
+  border-bottom-color: #333;
+}
+
+.move-summary {
+  font-size: 12px;
+  color: #7a8288;
+  margin-left: 8px;
+}
+
+.move-detail {
+  display: none;
+  margin: 4px 0 8px 10px;
+}
+
+.move-detail.show {
+  display: block;
+}
+
+/* ===== コンテスト関連 ===== */
+.contest-badge {
+  display: inline-block;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 0 7px;
+  margin-left: 5px;
+  border-radius: 10px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.hearts {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 3px;
+}
+
+.hearts-appeal { color: #d62d20; letter-spacing: 1px; }
+.hearts-jam { color: #111; letter-spacing: 1px; }
+.hearts-num { font-size: 11px; color: #888; }
+.hearts-gap { margin-left: 12px; }
+.row-hearts { margin-left: 8px; font-size: 13px; }
+
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6a7580;
+  margin-bottom: 4px;
+}
+
+.contest-section { margin-top: 10px; }
+
+.battle-section {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #dfe4e8;
+  color: #555;
+}
+
+.battle-section .move-stats { margin-top: 2px; }
+.battle-desc { font-size: 12.5px; color: #555; margin-top: 6px; padding-top: 0; border-top: none; }
+.contest-desc { margin-top: 6px; padding-top: 0; border-top: none; font-size: 14px; }
+
+.contest-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  font-size: 15px;
+}
+
+.effect-class {
+  font-size: 12px;
+  color: #3a4a5c;
+  background: #eef2f7;
+  border: 1px solid #d5dde6;
+  border-radius: 10px;
+  padding: 0 8px;
+}
+
+.effect-class.small { margin-left: 6px; font-size: 11px; }
+
+.vanilla-note {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #8a5a10;
+  background: #fff6e2;
+  border: 1px solid #f0dcb4;
+  border-radius: 4px;
+  padding: 3px 8px;
+  display: inline-block;
+}
+
+.vanilla-tag { font-weight: 700; margin-right: 8px; cursor: help; }
+
+.combo-row {
+  margin-top: 6px;
+  font-size: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+}
+
+.combo-none { color: #999; }
+.combo-plain { color: #444; }
+
+.combo-link {
+  font: inherit;
+  font-size: 12.5px;
+  padding: 1px 9px;
+  border: 1px solid #cfd8e3;
+  background: #f2f6fb;
+  color: #2e6ab8;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.combo-link:hover { background: #e2ecf9; }
+
+.kakeru {
+  margin-top: 10px;
+  border: 1px solid #e6e0cf;
+  background: #fffdf6;
+  border-radius: 5px;
+  padding: 7px 10px;
+  font-size: 13px;
+}
+
+.kakeru-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.kakeru-title { font-weight: 700; color: #6b5a22; }
+.kakeru-code { font-family: monospace; background: #f3ecd2; border-radius: 3px; padding: 0 6px; }
+.kakeru-starter { font-size: 11px; color: #2f7a46; border: 1px solid #b9dcc3; border-radius: 10px; padding: 0 7px; }
+.kakeru-line { margin-top: 5px; }
+.kakeru-effect { font-weight: 600; }
+.kakeru-detail { margin-top: 3px; color: #444; line-height: 1.6; }
+.kakeru-comment { margin-top: 5px; }
+.kakeru-comment summary { cursor: pointer; color: #2e6ab8; }
+.kakeru-comment-body { margin-top: 4px; white-space: pre-line; line-height: 1.6; color: #333; }
+.kakeru-combos { margin-top: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.kakeru-combo { display: inline-flex; align-items: center; gap: 3px; }
+.kakeru-combo-code {
+  color: #fff;
+  font-size: 10.5px;
+  font-family: monospace;
+  border-radius: 3px;
+  padding: 0 5px;
+}
+
+/* 習得方法のタグ */
+.learn-tags { margin-left: 6px; }
+.learn-tag {
+  font-size: 11px;
+  color: #59636d;
+  background: #eef1f4;
+  border: 1px solid #d5dbe0;
+  border-radius: 10px;
+  padding: 0 6px;
+  margin-left: 3px;
+  white-space: nowrap;
+}
+
+/* コンテストタイプの絞り込み */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 8px 0 2px;
+}
+
+.filter-label { font-size: 13px; color: #666; }
+.sort-label { font-size: 13px; color: #666; margin-left: auto; }
+.sort-label select { font: inherit; font-size: 13px; padding: 2px 4px; }
+
+.contest-filter { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.cf-btn {
+  --cf-color: #4a90e2;
+  font: inherit;
+  font-size: 13px;
+  padding: 3px 11px;
+  border: 1px solid var(--cf-color);
+  background: #fff;
+  color: var(--cf-color);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.cf-btn[data-type=""] { --cf-color: #6a7580; }
+.cf-btn.active { background: var(--cf-color); color: #fff; }
+
+/* 二版のプロフィール */
+.profile-top { margin-bottom: 2px; }
+.profile-versions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.profile-col { min-width: 0; }
+.profile-versions .profile-col {
+  border: 1px solid #e3e7eb;
+  border-radius: 6px;
+  padding: 6px 9px;
+  background: #fbfcfd;
+}
+
+.profile-version {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 0 7px;
+  margin-bottom: 4px;
+  border: 1px solid transparent;
+}
+
+.profile-diff-note { font-size: 12px; color: #8a5a10; margin-top: 4px; }
+
+@media screen and (max-width: 560px) {
+  .profile-versions { grid-template-columns: 1fr; }
+  .sort-label { margin-left: 0; }
+  .row-hearts { display: block; margin-left: 0; }
+}
+
+/* タブレット対応 (768px以下) */
+@media screen and (max-width: 768px) {
+  body { padding: 5px; }
+  h1 { font-size: 20px; }
+  h2 { font-size: 16px; }
+  .box { padding: 12px; margin: 10px auto; border-radius: 8px; }
+  input { font-size: 15px; padding: 8px; }
+  li { font-size: 14px; line-height: 1.7; }
+}
+
+/* スマホ対応 (480px以下) */
+@media screen and (max-width: 480px) {
+  body { padding: 3px; }
+  h1 { font-size: 18px; margin: 8px 0; }
+  h2 { font-size: 15px; margin: 0 0 8px 0; }
+  .box { padding: 10px; margin: 8px 5px; border-radius: 6px; }
+  input { font-size: 16px; padding: 10px 8px; margin: 8px 0; } /* iOSのズーム防止のため16px以上 */
+  ul { padding-left: 12px; }
+  li { font-size: 14px; line-height: 1.6; padding: 4px 0; }
+  .note { font-size: 12px; }
+  .move-summary { display: block; margin-left: 0; }
+  .move-stats { gap: 4px 14px; }
+}
+
+/* 小さいスマホ (360px以下) */
+@media screen and (max-width: 360px) {
+  h1 { font-size: 16px; }
+  h2 { font-size: 14px; }
+  .box { padding: 8px; margin: 6px 3px; }
+  li { font-size: 13px; }
+}

@@ -1,0 +1,181 @@
+{
+ "source_roms": {
+  "altair": "18年1月30日完成版アルタイル.gba",
+  "sirius": "18年1月30日完成版シリウス.gba"
+ },
+ "counts": {
+  "moves": 354,
+  "pokemon": 203,
+  "contest_effects": 48
+ },
+ "renamed_moves": [
+  {
+   "id": 12,
+   "name": "ダストシュート",
+   "vanilla_name": "ハサミギロチン"
+  },
+  {
+   "id": 121,
+   "name": "ひょうらいは",
+   "vanilla_name": "タマゴばくだん"
+  },
+  {
+   "id": 125,
+   "name": "スターダスト",
+   "vanilla_name": "ホネこんぼう"
+  },
+  {
+   "id": 135,
+   "name": "かげうち",
+   "vanilla_name": "タマゴうみ"
+  },
+  {
+   "id": 137,
+   "name": "あくのはどう",
+   "vanilla_name": "へびにらみ"
+  },
+  {
+   "id": 140,
+   "name": "どくづき",
+   "vanilla_name": "たまなげ"
+  },
+  {
+   "id": 142,
+   "name": "こおりのつぶて",
+   "vanilla_name": "あくまのキッス"
+  },
+  {
+   "id": 146,
+   "name": "はめつのねがい",
+   "vanilla_name": "ピヨピヨパンチ"
+  },
+  {
+   "id": 152,
+   "name": "エナジーボール",
+   "vanilla_name": "クラブハンマー"
+  },
+  {
+   "id": 155,
+   "name": "だいちのいかり",
+   "vanilla_name": "ホネブーメラン"
+  },
+  {
+   "id": 158,
+   "name": "エアスラッシュ",
+   "vanilla_name": "ひっさつまえば"
+  },
+  {
+   "id": 159,
+   "name": "ぶちこわす",
+   "vanilla_name": "かくばる"
+  },
+  {
+   "id": 160,
+   "name": "グランボールダ",
+   "vanilla_name": "テクスチャー"
+  },
+  {
+   "id": 162,
+   "name": "ブレイブバード",
+   "vanilla_name": "いかりのまえば"
+  },
+  {
+   "id": 166,
+   "name": "アイアンヘッド",
+   "vanilla_name": "スケッチ"
+  },
+  {
+   "id": 167,
+   "name": "ウッドハンマー",
+   "vanilla_name": "トリプルキック"
+  },
+  {
+   "id": 169,
+   "name": "ほうでん",
+   "vanilla_name": "クモのす"
+  },
+  {
+   "id": 176,
+   "name": "メタルブラスト",
+   "vanilla_name": "テクスチャー2"
+  },
+  {
+   "id": 177,
+   "name": "はどうだん",
+   "vanilla_name": "エアロブラスト"
+  },
+  {
+   "id": 190,
+   "name": "つじぎり",
+   "vanilla_name": "オクタンほう"
+  },
+  {
+   "id": 208,
+   "name": "ドラゴンダイブ",
+   "vanilla_name": "ミルクのみ"
+  },
+  {
+   "id": 217,
+   "name": "むしのさざめき",
+   "vanilla_name": "プレゼント"
+  },
+  {
+   "id": 221,
+   "name": "マグネットボム",
+   "vanilla_name": "せいなるほのお"
+  },
+  {
+   "id": 292,
+   "name": "バレットパンチ",
+   "vanilla_name": "つっぱり"
+  },
+  {
+   "id": 293,
+   "name": "パワージェム",
+   "vanilla_name": "ほごしょく"
+  },
+  {
+   "id": 294,
+   "name": "どろばくだん",
+   "vanilla_name": "ほたるび"
+  },
+  {
+   "id": 298,
+   "name": "ロックカット",
+   "vanilla_name": "フラフラダンス"
+  },
+  {
+   "id": 299,
+   "name": "アクアジェット",
+   "vanilla_name": "ブレイズキック"
+  },
+  {
+   "id": 302,
+   "name": "のりうつる",
+   "vanilla_name": "ニードルアーム"
+  },
+  {
+   "id": 353,
+   "name": "ソウルブレイク",
+   "vanilla_name": "はめつのねがい"
+  }
+ ],
+ "version_differs": [
+  "アスフィア"
+ ],
+ "contest_types": [
+  "かっこよさ",
+  "うつくしさ",
+  "かわいさ",
+  "かしこさ",
+  "たくましさ"
+ ],
+ "notes": [
+  "basestats の順は HP, こうげき, ぼうぎょ, とくこう, とくぼう, すばやさ",
+  "description はコンテスト技説明（ROM内 WazaSetumeiMsgTbl）、battle_description はステータス画面の技説明",
+  "contest.appeal / jam はハート数（ROM値を10で割った値）",
+  "kakeru はスロットの原作技名（vanilla_name）で対応付けた、かけるのページの効果別分類。改名された30技のコンテストデータはROM上で原作技のまま",
+  "dex_text はアルタイル版、dex_text_sirius はシリウス版の図鑑説明文（全種で版ごとに文が違う）",
+  "moves はレベル技・わざマシン・技教え・タマゴ技の和集合。altair_only / sirius_only は片方の版だけの技"
+ ]
+}

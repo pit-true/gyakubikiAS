@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>AS技逆引き</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="searchmove_style.css">
+</head>
+<body>
+
+<h1>アルタイル・シリウス 技逆引き</h1>
+<div class="note">2文字以上入力で検索します（技名・ポケモン名・ローマ字対応）</div>
+
+<div class="box version-box">
+  <h2>💿 バージョン</h2>
+  <div id="versionSelect" class="version-select">
+    <label><input type="radio" name="version" value="both" checked> 両方</label>
+    <label><input type="radio" name="version" value="altair"> アルタイル</label>
+    <label><input type="radio" name="version" value="sirius"> シリウス</label>
+  </div>
+  <div id="versionNote" class="note version-note"></div>
+</div>
+
+<div class="box">
+  <h2>🔍 技名 → 覚えるポケモン</h2>
+  <input id="moveInput" placeholder="例：げきりん / エナジーボール / gekirin">
+  <div id="moveCandidates" class="candidates"></div>
+  <div id="moveInfo" class="move-info"></div>
+  <div id="moveCount" class="count"></div>
+  <ul id="moveResult"></ul>
+</div>
+
+<div class="box">
+  <h2>🔍 技AND検索 → 両方覚えるポケモン</h2>
+  <input id="andMove1" placeholder="技1（例：げきりん）">
+  <div id="andCandidates1" class="candidates"></div>
+  <input id="andMove2" placeholder="技2（例：つるぎのまい）">
+  <div id="andCandidates2" class="candidates"></div>
+  <div id="andInfo" class="move-info"></div>
+  <div id="andCount" class="count"></div>
+  <ul id="andResult"></ul>
+</div>
+
+<div class="box">
+  <h2>🔍 ポケモン名 → 覚える技</h2>
+  <input id="pokemonInput" placeholder="例：アスフィア / あすふぃあ / asufia">
+  <div id="pokemonCandidates" class="candidates"></div>
+  <div id="pokemonProfile" class="profile"></div>
+  <input id="moveFilter" class="sub-input" placeholder="覚える技を絞り込む（技名・ローマ字・タイプ／任意）">
+  <div class="filter-row">
+    <span class="filter-label">コンテスト</span>
+    <div id="contestFilter" class="contest-filter"></div>
+    <label class="sort-label">並び順
+      <select id="moveSort">
+        <option value="default">習得テーブル順</option>
+        <option value="appeal-desc">アピールが高い順</option>
+        <option value="appeal-asc">アピールが低い順</option>
+        <option value="power-desc">威力が高い順</option>
+      </select>
+    </label>
+  </div>
+  <div id="pokemonCount" class="count"></div>
+  <ul id="pokemonResult"></ul>
+</div>
+
+<div class="box">
+  <h2>🎀 コンテストタイプで技を探す</h2>
+  <div id="contestTypeButtons" class="contest-filter"></div>
+  <div id="contestTypeCount" class="count"></div>
+  <ul id="contestTypeResult"></ul>
+</div>
+
+<div class="note footer-note">
+  データ: アルタイル版・シリウス版のROM（18年1月30日完成版）から取得<br>
+  コンテストの効果分類・コンボ解説:
+  <a href="https://www2u.biglobe.ne.jp/~kakeru/pokemon_a/contest/" target="_blank" rel="noopener">かけるのページ 効果別コンテスト技リスト</a><br>
+  「両方」表示では、どちらか一方の版でしか覚えない技に版名を付けます。
+  技の名前を変えた技は、コンテストの数値と説明がROM内では元の技のままです。
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

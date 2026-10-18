@@ -1,0 +1,12 @@
+{
+  "name": "gyakubiki-as",
+  "version": "1.0.0",
+  "description": "アルタイル・シリウス 技逆引き",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1"
+  }
+}

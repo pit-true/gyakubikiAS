@@ -1,0 +1,386 @@
+[
+ {
+  "id": 0,
+  "class_id": 0,
+  "appeal": 4,
+  "jam": 0,
+  "description": "たくさん アピール できる",
+  "class": "アピール"
+ },
+ {
+  "id": 1,
+  "class_id": 0,
+  "appeal": 6,
+  "jam": 0,
+  "description": "この アピールの あと\nびっくり しやすく なってしまう",
+  "class": "アピール"
+ },
+ {
+  "id": 2,
+  "class_id": 0,
+  "appeal": 8,
+  "jam": 0,
+  "description": "すごいアピールに なるが このあと\nさいごまで なにも できなくなる",
+  "class": "アピール"
+ },
+ {
+  "id": 3,
+  "class_id": 0,
+  "appeal": 3,
+  "jam": 0,
+  "description": "つづけて だしても しんさいんに\nあきられずに アピール できる",
+  "class": "アピール"
+ },
+ {
+  "id": 4,
+  "class_id": 1,
+  "appeal": 2,
+  "jam": 0,
+  "description": "ほかの ポケモンに おどかされても\n1ど くらいは がまんできる",
+  "class": "アピール(リスクあり)"
+ },
+ {
+  "id": 5,
+  "class_id": 1,
+  "appeal": 1,
+  "jam": 0,
+  "description": "ほかの ポケモンに おどかされても\nがまんできる",
+  "class": "アピール(リスクあり)"
+ },
+ {
+  "id": 6,
+  "class_id": 1,
+  "appeal": 3,
+  "jam": 0,
+  "description": "ほかの ポケモンに おどかされても\nすこし くらいなら がまんできる",
+  "class": "アピール(リスクあり)"
+ },
+ {
+  "id": 7,
+  "class_id": 1,
+  "appeal": 3,
+  "jam": 0,
+  "description": "この わざを だした あとは\nあまり びっくり しなくなる",
+  "class": "アピール(リスクあり)"
+ },
+ {
+  "id": 8,
+  "class_id": 2,
+  "appeal": 3,
+  "jam": 2,
+  "description": "じぶんの まえに アピールした\nポケモンを ちょっと おどろかす",
+  "class": "妨害(直前)"
+ },
+ {
+  "id": 9,
+  "class_id": 3,
+  "appeal": 3,
+  "jam": 1,
+  "description": "アピールが おわっている ポケモン\nみんなを ちょっと おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 10,
+  "class_id": 2,
+  "appeal": 2,
+  "jam": 3,
+  "description": "じぶんの まえに アピールした\nポケモンを おどろかす",
+  "class": "妨害(直前)"
+ },
+ {
+  "id": 11,
+  "class_id": 3,
+  "appeal": 2,
+  "jam": 2,
+  "description": "アピールが おわっている ポケモン\nみんなを おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 12,
+  "class_id": 2,
+  "appeal": 1,
+  "jam": 4,
+  "description": "じぶんの まえに アピールした\nポケモンを かなり おどろかす",
+  "class": "妨害(直前)"
+ },
+ {
+  "id": 13,
+  "class_id": 3,
+  "appeal": 1,
+  "jam": 3,
+  "description": "アピールが おわっている ポケモン\nみんなを かなり おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 14,
+  "class_id": 2,
+  "appeal": 3,
+  "jam": 2,
+  "description": "じぶんの まえに アピールした\nポケモンを おどろかす",
+  "class": "妨害(直前)"
+ },
+ {
+  "id": 15,
+  "class_id": 3,
+  "appeal": 3,
+  "jam": 1,
+  "description": "アピールが おわっている ポケモン\nみんなを おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 16,
+  "class_id": 4,
+  "appeal": 3,
+  "jam": 0,
+  "description": "しんさいんの ほかの ポケモンへの\nちゅうもくを そらすことが できる",
+  "class": "特殊"
+ },
+ {
+  "id": 17,
+  "class_id": 3,
+  "appeal": 2,
+  "jam": 1,
+  "description": "しんさいんに ちゅうもく されている\nポケモンを とくに おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 18,
+  "class_id": 3,
+  "appeal": 4,
+  "jam": 4,
+  "description": "みんなの じゃまを しまくって\nつぎの アピールは さんか しない",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 19,
+  "class_id": 3,
+  "appeal": 2,
+  "jam": 1,
+  "description": "おなじ タイプの アピールを した\nポケモンを とくに おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 20,
+  "class_id": 3,
+  "appeal": 2,
+  "jam": 1,
+  "description": "かっこいい アピールを した\nポケモンを かなり おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 21,
+  "class_id": 3,
+  "appeal": 2,
+  "jam": 1,
+  "description": "うつくしい アピールを した\nポケモンを かなり おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 22,
+  "class_id": 3,
+  "appeal": 2,
+  "jam": 1,
+  "description": "かわいい アピールを した\nポケモンを かなり おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 23,
+  "class_id": 3,
+  "appeal": 2,
+  "jam": 1,
+  "description": "かしこい アピールを した\nポケモンを かなり おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 24,
+  "class_id": 3,
+  "appeal": 2,
+  "jam": 1,
+  "description": "たくましい アピールを した\nポケモンを かなり おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 25,
+  "class_id": 4,
+  "appeal": 2,
+  "jam": 0,
+  "description": "このあと アピールする ポケモン\n1ひきを きんちょう させる",
+  "class": "特殊"
+ },
+ {
+  "id": 26,
+  "class_id": 4,
+  "appeal": 2,
+  "jam": 0,
+  "description": "このあと アピールする ポケモン\nみんなを きんちょう させる",
+  "class": "特殊"
+ },
+ {
+  "id": 27,
+  "class_id": 4,
+  "appeal": 3,
+  "jam": 0,
+  "description": "アピールが おわった ポケモンの\nちょうしを さげる",
+  "class": "特殊"
+ },
+ {
+  "id": 28,
+  "class_id": 3,
+  "appeal": 3,
+  "jam": 1,
+  "description": "ちょうしの いい ポケモン\nみんなを かなり おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 29,
+  "class_id": 5,
+  "appeal": 2,
+  "jam": 0,
+  "description": "1ばん はじめに アピールすると\nアピールが すごく うまくいく",
+  "class": "アピール変動"
+ },
+ {
+  "id": 30,
+  "class_id": 5,
+  "appeal": 2,
+  "jam": 0,
+  "description": "1ばん さいごに アピールすると\nアピールが すごく うまくいく",
+  "class": "アピール変動"
+ },
+ {
+  "id": 31,
+  "class_id": 5,
+  "appeal": 1,
+  "jam": 0,
+  "description": "それまでの ポケモンの アピールと\nおなじくらいの アピールに みせる",
+  "class": "アピール変動"
+ },
+ {
+  "id": 32,
+  "class_id": 5,
+  "appeal": 1,
+  "jam": 0,
+  "description": "1つまえの ポケモンの アピールと\nおなじくらい うまく できる",
+  "class": "アピール変動"
+ },
+ {
+  "id": 33,
+  "class_id": 5,
+  "appeal": 1,
+  "jam": 0,
+  "description": "みんなの あとで アピールするほど\nすごい アピールに みせられる",
+  "class": "アピール変動"
+ },
+ {
+  "id": 34,
+  "class_id": 5,
+  "appeal": 1,
+  "jam": 0,
+  "description": "だすときに よって アピールの\nできぐあいが いろいろと かわる",
+  "class": "アピール変動"
+ },
+ {
+  "id": 35,
+  "class_id": 5,
+  "appeal": 2,
+  "jam": 0,
+  "description": "1つまえの ポケモンの アピールと\nタイプが おなじなら きにいられる",
+  "class": "アピール変動"
+ },
+ {
+  "id": 36,
+  "class_id": 5,
+  "appeal": 2,
+  "jam": 0,
+  "description": "1つまえの ポケモンの アピールと\nタイプが ちがうなら きにいられる",
+  "class": "アピール変動"
+ },
+ {
+  "id": 37,
+  "class_id": 5,
+  "appeal": 3,
+  "jam": 0,
+  "description": "1つまえの ポケモンの アピールの\nうまさに えいきょう される",
+  "class": "アピール変動"
+ },
+ {
+  "id": 38,
+  "class_id": 5,
+  "appeal": 1,
+  "jam": 0,
+  "description": "アピールの ちょうしが あがる\nきんちょうも しにくくなる",
+  "class": "アピール変動"
+ },
+ {
+  "id": 39,
+  "class_id": 5,
+  "appeal": 1,
+  "jam": 0,
+  "description": "ちょうしが いいときに だすと\nアピールが とても うまくいく",
+  "class": "アピール変動"
+ },
+ {
+  "id": 40,
+  "class_id": 6,
+  "appeal": 3,
+  "jam": 0,
+  "description": "このつぎの アピールを\nはじめの ほうに だすことが できる",
+  "class": "順番操作"
+ },
+ {
+  "id": 41,
+  "class_id": 6,
+  "appeal": 3,
+  "jam": 0,
+  "description": "このつぎの アピールを\nおわりの ほうに だすことが できる",
+  "class": "順番操作"
+ },
+ {
+  "id": 42,
+  "class_id": 6,
+  "appeal": 3,
+  "jam": 0,
+  "description": "このつぎの アピールの\nじゅんばんが かわりやすく なる",
+  "class": "順番操作"
+ },
+ {
+  "id": 43,
+  "class_id": 6,
+  "appeal": 3,
+  "jam": 0,
+  "description": "このつぎの アピールの\nじゅんばんを めちゃくちゃに する",
+  "class": "順番操作"
+ },
+ {
+  "id": 44,
+  "class_id": 5,
+  "appeal": 1,
+  "jam": 0,
+  "description": "どの コンテストで みせても\nかならず もりあがる アピール",
+  "class": "アピール変動"
+ },
+ {
+  "id": 45,
+  "class_id": 3,
+  "appeal": 2,
+  "jam": 1,
+  "description": "アピールが うまくいった ポケモン\nみんなを かなり おどろかす",
+  "class": "妨害(全体)"
+ },
+ {
+  "id": 46,
+  "class_id": 5,
+  "appeal": 1,
+  "jam": 0,
+  "description": "かいじょうが もりあがっている ほど\nアピールが きにいられる",
+  "class": "アピール変動"
+ },
+ {
+  "id": 47,
+  "class_id": 4,
+  "appeal": 3,
+  "jam": 0,
+  "description": "このアピールのあと かいじょうが\nしばらく もりあがらなく なる",
+  "class": "特殊"
+ }
+]
