@@ -93,11 +93,12 @@ Promise.all([
       m._v = norm(m.vanilla_name);
     });
     renderContestTypeBox();
+    renderComboBox();
     console.log(`Loaded ${pokemonData.length} Pokemon / ${moveList.length} moves / ${Object.keys(pokemonLinks).length} links`);
   })
   .catch(err => {
     console.error("Failed to load data:", err);
-    ["moveResult", "andResult", "pokemonResult", "contestTypeResult"].forEach(id => {
+    ["moveResult", "andResult", "pokemonResult", "contestTypeResult", "comboResult"].forEach(id => {
       document.getElementById(id).innerHTML = "<li>データ読み込みエラー（ローカルHTTPサーバーから開いてください）</li>";
     });
   });
@@ -795,6 +796,153 @@ function renderContestTypeBox() {
   });
 }
 renderContestTypeBox();
+
+// ==============================
+// コンボ技一覧
+// ==============================
+const comboFilter = document.getElementById("comboFilter");
+const comboTypeButtons = document.getElementById("comboTypeButtons");
+const comboReverse = document.getElementById("comboReverse");
+const comboCount = document.getElementById("comboCount");
+const comboResult = document.getElementById("comboResult");
+const comboExtraBlock = document.getElementById("comboExtraBlock");
+const comboExtraResult = document.getElementById("comboExtraResult");
+let comboTypePicked = null;
+let comboIndex = null;
+
+// ROMのコンボ（contest.combo_to_ids）を主、かけるのページ（kakeru.combos）を補助にする。
+// かけるのページは技名を変えた技を原作名で載せているため、原作名でも引く。
+function buildComboIndex() {
+  const fwd = new Map();
+  const rev = new Map();
+  const extra = [];
+  const push = (map, k, v) => {
+    if (!map.has(k)) map.set(k, []);
+    if (!map.get(k).includes(v)) map.get(k).push(v);
+  };
+  const byName = new Map();
+  const byVanilla = new Map();
+  moveList.forEach(m => {
+    byName.set(m.name, m);
+    if (m.vanilla_name) byVanilla.set(m.vanilla_name, m);
+  });
+  moveList.forEach(m => {
+    const c = m.contest || {};
+    (c.combo_to_ids || []).forEach(id => {
+      if (!moveById.has(id)) return; // 存在しない技IDは出さない
+      push(fwd, m.id, id);
+      push(rev, id, m.id);
+    });
+  });
+  moveList.forEach(m => {
+    const romTo = new Set((m.contest && m.contest.combo_to_ids) || []);
+    ((m.kakeru && m.kakeru.combos) || []).forEach(x => {
+      const cands = [byVanilla.get(x.move), byName.get(x.move)].filter(Boolean);
+      if (cands.some(t => romTo.has(t.id))) return;
+      extra.push({ from: m, toName: x.move, to: cands[0] || null });
+    });
+  });
+  return { fwd, rev, extra };
+}
+
+function comboMoveButton(move) {
+  const b = el("button", "combo-link combo-move");
+  b.type = "button";
+  b.title = "クリックで技情報を表示";
+  b.appendChild(el("span", "move-label", move.name));
+  b.appendChild(contestBadge(move.contest.type));
+  const hearts = heartsEl(move, false);
+  hearts.classList.add("row-hearts");
+  b.appendChild(hearts);
+  if (move.vanilla_name) {
+    const v = el("span", "vanilla-note", `原作名: ${move.vanilla_name}`);
+    v.title = VANILLA_TIP;
+    b.appendChild(v);
+  }
+  b.addEventListener("click", ev => {
+    ev.stopPropagation();
+    jumpToMove(move);
+  });
+  return b;
+}
+
+function comboGroupItem(head, partners, reverse) {
+  const li = el("li", "combo-group");
+  const headBox = el("span", "combo-head");
+  headBox.appendChild(comboMoveButton(head));
+  const arrow = el("span", "combo-arrow", "→");
+  const list = el("span", "combo-partners");
+  partners.forEach(p => {
+    if (p.contest) list.appendChild(comboMoveButton(p));
+    else list.appendChild(el("span", "combo-plain", p.plain));
+  });
+  if (reverse) {
+    li.appendChild(list);
+    li.appendChild(arrow);
+    li.appendChild(headBox);
+  } else {
+    li.appendChild(headBox);
+    li.appendChild(arrow);
+    li.appendChild(list);
+  }
+  return li;
+}
+
+function comboHeadMatches(head, word) {
+  const w = norm(word);
+  if (!w) return true;
+  return [head._n, head._r, head._v, norm(head.hiragana)].some(s => s && s.includes(w));
+}
+
+function renderComboBox() {
+  renderContestFilterButtons(comboTypeButtons, comboTypePicked, t => {
+    comboTypePicked = t;
+    renderComboBox();
+  }, true);
+  comboResult.innerHTML = "";
+  comboExtraResult.innerHTML = "";
+  comboExtraBlock.hidden = true;
+  comboCount.textContent = "";
+  if (moveList.length === 0) return;
+  if (!comboIndex) comboIndex = buildComboIndex();
+
+  const reverse = comboReverse.checked;
+  const word = comboFilter.value;
+  const map = reverse ? comboIndex.rev : comboIndex.fwd;
+  const headOk = head => (!comboTypePicked || head.contest.type === comboTypePicked) &&
+    comboHeadMatches(head, word);
+
+  const heads = [...map.keys()].map(id => moveById.get(id)).filter(headOk).sort((a, b) => a.id - b.id);
+  let pairs = 0;
+  heads.forEach(h => {
+    const partners = map.get(h.id).map(id => moveById.get(id));
+    pairs += partners.length;
+    comboResult.appendChild(comboGroupItem(h, partners, reverse));
+  });
+  const what = reverse ? "次に出す技" : "先に出す技";
+  comboCount.textContent = heads.length === 0
+    ? "該当するコンボはありません"
+    : `${what} ${heads.length}件、コンボ ${pairs}組` +
+      (reverse ? "（各技の前に出せる技を表示）" : "（各技の次に出せる技を表示）");
+
+  // かけるのページにだけあるコンボは、別の一覧として分けて出す
+  const groups = new Map();
+  comboIndex.extra.forEach(e => {
+    const head = reverse ? e.to : e.from;
+    const partner = reverse ? e.from : (e.to || { plain: e.toName });
+    if (!head) return; // 技データに無い技は逆引きの見出しにできない
+    if (!headOk(head)) return;
+    if (!groups.has(head.id)) groups.set(head.id, { head, partners: [] });
+    groups.get(head.id).partners.push(partner);
+  });
+  [...groups.values()].sort((a, b) => a.head.id - b.head.id).forEach(g => {
+    comboExtraResult.appendChild(comboGroupItem(g.head, g.partners, reverse));
+  });
+  comboExtraBlock.hidden = groups.size === 0;
+}
+
+comboFilter.addEventListener("input", debounce(renderComboBox, 300));
+comboReverse.addEventListener("change", renderComboBox);
 
 // ==============================
 // バージョン切り替え

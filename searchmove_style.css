@@ -608,3 +608,15 @@ li.message {
   .box { padding: 8px; margin: 6px 3px; }
   li { font-size: 13px; }
 }
+
+/* コンボ技一覧 */
+.combo-group { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.combo-head, .combo-partners { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+.combo-arrow { color: #888; font-weight: bold; }
+.combo-move { display: inline-flex; align-items: center; gap: 4px; }
+.combo-move .row-hearts { margin-left: 2px; }
+.vanilla-note { font-size: 11px; color: #888; }
+.combo-extra { margin-top: 14px; padding-top: 8px; border-top: 1px dashed #ccc; }
+.combo-extra h3 { font-size: 14px; margin: 4px 0; }
+.combo-extra[hidden] { display: none; }
+.combo-move .row-hearts { display: inline; }

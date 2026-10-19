@@ -70,6 +70,24 @@
   <ul id="contestTypeResult"></ul>
 </div>
 
+<div class="box">
+  <h2>🔗 コンボ技一覧</h2>
+  <div class="note">先に出す技 → 次に出す技。コンテストのコンボをROMのデータから並べます（バージョンには関係しません）。技名をクリックすると技情報を開きます。</div>
+  <input id="comboFilter" class="sub-input" placeholder="技名で絞り込む（ひらがな・カタカナ・ローマ字／任意）">
+  <div class="filter-row">
+    <span class="filter-label">部門</span>
+    <div id="comboTypeButtons" class="contest-filter"></div>
+    <label class="sort-label"><input type="checkbox" id="comboReverse"> 逆引き（この技の前に出す技）</label>
+  </div>
+  <div id="comboCount" class="count"></div>
+  <ul id="comboResult"></ul>
+  <div id="comboExtraBlock" class="combo-extra" hidden>
+    <h3>かけるのページ（ROMのデータにないコンボ）</h3>
+    <div class="note">ROMから読み取ったコンボには無く、かけるのページにだけ載っているものです。</div>
+    <ul id="comboExtraResult"></ul>
+  </div>
+</div>
+
 <div class="note footer-note">
   データ: アルタイル版・シリウス版のROM（18年1月30日完成版）から取得<br>
   コンテストの効果分類・コンボ解説:
