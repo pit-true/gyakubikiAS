@@ -86,6 +86,10 @@ def parse_reference(path):
     return out
 
 
+# かけるのページ側の誤記。ROM のコンボデータと照らして直す（こらえる→いたみわけ）
+TYPO_FIX = {"いわみわけ": "いたみわけ"}
+
+
 def parse_combos(folder):
     combos = {}
     for p in sorted(glob.glob(os.path.join(folder, "lzh", "contest", "*.htm"))):
@@ -105,7 +109,7 @@ def parse_combos(folder):
             l = norm(l)
             m = re.fullmatch(r"([格美愛賢逞]) (\d+-[A-Z]) (.+)", l)
             if m:
-                lst.append({"type": SHORT[m.group(1)], "code": m.group(2), "move": m.group(3)})
+                lst.append({"type": SHORT[m.group(1)], "code": m.group(2), "move": TYPO_FIX.get(m.group(3), m.group(3))})
         if title in combos:
             print("WARNING: duplicate starter title %s (%s)" % (title, p), file=sys.stderr)
         combos[title] = lst
