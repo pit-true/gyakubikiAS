@@ -146,12 +146,12 @@ test("技名検索: かけるのコンボ先一覧が出る", async () => {
   assert.ok(items[0].textContent.includes(k.combos[0].code) && items[0].textContent.includes(k.combos[0].move));
 });
 
-test("技名検索: 原作名つきの技は『原作名』と注記を出す", async () => {
+test("技名検索: 技名を変えた技でも『原作名』の注記は出さない", async () => {
   await type("#moveInput", "エナジーボール");
   const info = flat("#moveInfo");
   assert.match(info, /^エナジーボール/);
-  assert.ok(info.includes("原作名:クラブハンマー"));
-  assert.ok($("#moveInfo .vanilla-tag").title.includes("元の技のまま"));
+  assert.ok(!info.includes("原作名"));
+  assert.equal($("#moveInfo .vanilla-tag"), null);
 });
 
 test("技名検索: ローマ字・ひらがな入力でもカタカナ技に当たる", async () => {
@@ -413,11 +413,10 @@ test("コンボ技一覧: 先に出す技ごとに1行、次に出す技が並�
   assert.ok(row.textContent.includes("→"));
 });
 
-test("コンボ技一覧: 原作名つきの技には原作名を付ける", () => {
-  const renamed = moveJson.find(m => m.vanilla_name && m.contest.combo_to_ids.length > 0);
-  const row = all("#comboResult li").find(
-    li => li.querySelector(".combo-head .move-label").textContent === renamed.name);
-  assert.ok(row.querySelector(".combo-head .vanilla-note").textContent.includes(renamed.vanilla_name));
+test("コンボ技一覧: 原作名の注記も、かけるのページだけのコンボ一覧も出さない", () => {
+  assert.equal(all("#comboResult .vanilla-note").length, 0);
+  assert.equal($("#comboExtraBlock"), null);
+  assert.ok(!txt("body").includes("かけるのページ（ROMのデータにないコンボ）"));
 });
 
 test("コンボ技一覧: 技名をクリックすると技情報カードが開く", async () => {
@@ -475,26 +474,11 @@ test("コンボ技一覧: 逆引きで、その技の前に出す技が出る", 
   assert.equal(all("#comboResult li").length, heads.size);
 });
 
-test("コンボ技一覧: かけるのページだけにあるコンボは別枠に分けて出す", async () => {
-  const block = $("#comboExtraBlock");
-  assert.ok(!block.hidden);
-  assert.ok(txt("#comboExtraBlock h3").includes("かけるのページ"));
-  // 逆引き中: ばかぢから の前に こころのめ が出る（ROMには無いコンボ）
-  const rowRev = all("#comboExtraResult li").find(
-    li => li.querySelector(".combo-head .move-label").textContent === "ばかぢから");
-  assert.ok(rowRev);
-  assert.ok(rowRev.textContent.includes("こころのめ"));
-  // 主の一覧にはこのコンボを混ぜない
-  assert.ok(!all("#comboResult li").some(li =>
-    li.querySelector(".combo-head .move-label").textContent === "ばかぢから" &&
-    li.textContent.includes("こころのめ")));
-
+test("コンボ技一覧: 逆引きを戻す", () => {
   const cb = $("#comboReverse");
   cb.checked = false;
   cb.dispatchEvent(new window.Event("change", { bubbles: true }));
-  const rowFwd = all("#comboExtraResult li").find(
-    li => li.querySelector(".combo-head .move-label").textContent === "こころのめ");
-  assert.ok(rowFwd.textContent.includes("ばかぢから"));
+  assert.match(txt("#comboCount"), /先に出す技/);
 });
 
 test("コンボ技一覧: バージョンを切り替えても一覧は変わらない", () => {

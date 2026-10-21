@@ -30,10 +30,6 @@ const TYPE_COLOR = {
   はがね: "#5a8ea1", フェアリー: "#ec8fe6", "???": "#68a090",
 };
 
-const VANILLA_TIP =
-  "この技は原作（エメラルド）の技を差し替えたものです。ROM内のコンテスト用データ" +
-  "（タイプ・アピール・コンボ・説明文）は、元の技のままです。";
-
 // ==============================
 // 検索用の文字列正規化
 // ==============================
@@ -329,16 +325,6 @@ function moveInfoCard(move, opts = {}) {
     head.appendChild(el("span", "learner-count", `${opts.learnerCount}体が習得`));
   }
   card.appendChild(head);
-
-  if (move.vanilla_name) {
-    const v = el("div", "vanilla-note");
-    const tag = el("span", "vanilla-tag", "原作名: " + move.vanilla_name);
-    tag.title = VANILLA_TIP;
-    v.appendChild(tag);
-    v.appendChild(el("span", "vanilla-text", "コンテストの数値・説明はこの原作の技のまま"));
-    v.title = VANILLA_TIP;
-    card.appendChild(v);
-  }
 
   // ---- コンテスト ----
   if (c) {
@@ -805,27 +791,17 @@ const comboTypeButtons = document.getElementById("comboTypeButtons");
 const comboReverse = document.getElementById("comboReverse");
 const comboCount = document.getElementById("comboCount");
 const comboResult = document.getElementById("comboResult");
-const comboExtraBlock = document.getElementById("comboExtraBlock");
-const comboExtraResult = document.getElementById("comboExtraResult");
 let comboTypePicked = null;
 let comboIndex = null;
 
-// ROMのコンボ（contest.combo_to_ids）を主、かけるのページ（kakeru.combos）を補助にする。
-// かけるのページは技名を変えた技を原作名で載せているため、原作名でも引く。
+// コンボはROMのデータ（contest.combo_to_ids）だけを使う
 function buildComboIndex() {
   const fwd = new Map();
   const rev = new Map();
-  const extra = [];
   const push = (map, k, v) => {
     if (!map.has(k)) map.set(k, []);
     if (!map.get(k).includes(v)) map.get(k).push(v);
   };
-  const byName = new Map();
-  const byVanilla = new Map();
-  moveList.forEach(m => {
-    byName.set(m.name, m);
-    if (m.vanilla_name) byVanilla.set(m.vanilla_name, m);
-  });
   moveList.forEach(m => {
     const c = m.contest || {};
     (c.combo_to_ids || []).forEach(id => {
@@ -834,15 +810,7 @@ function buildComboIndex() {
       push(rev, id, m.id);
     });
   });
-  moveList.forEach(m => {
-    const romTo = new Set((m.contest && m.contest.combo_to_ids) || []);
-    ((m.kakeru && m.kakeru.combos) || []).forEach(x => {
-      const cands = [byVanilla.get(x.move), byName.get(x.move)].filter(Boolean);
-      if (cands.some(t => romTo.has(t.id))) return;
-      extra.push({ from: m, toName: x.move, to: cands[0] || null });
-    });
-  });
-  return { fwd, rev, extra };
+  return { fwd, rev };
 }
 
 function comboMoveButton(move) {
@@ -854,11 +822,6 @@ function comboMoveButton(move) {
   const hearts = heartsEl(move, false);
   hearts.classList.add("row-hearts");
   b.appendChild(hearts);
-  if (move.vanilla_name) {
-    const v = el("span", "vanilla-note", `原作名: ${move.vanilla_name}`);
-    v.title = VANILLA_TIP;
-    b.appendChild(v);
-  }
   b.addEventListener("click", ev => {
     ev.stopPropagation();
     jumpToMove(move);
@@ -872,10 +835,7 @@ function comboGroupItem(head, partners, reverse) {
   headBox.appendChild(comboMoveButton(head));
   const arrow = el("span", "combo-arrow", "→");
   const list = el("span", "combo-partners");
-  partners.forEach(p => {
-    if (p.contest) list.appendChild(comboMoveButton(p));
-    else list.appendChild(el("span", "combo-plain", p.plain));
-  });
+  partners.forEach(p => list.appendChild(comboMoveButton(p)));
   if (reverse) {
     li.appendChild(list);
     li.appendChild(arrow);
@@ -900,8 +860,6 @@ function renderComboBox() {
     renderComboBox();
   }, true);
   comboResult.innerHTML = "";
-  comboExtraResult.innerHTML = "";
-  comboExtraBlock.hidden = true;
   comboCount.textContent = "";
   if (moveList.length === 0) return;
   if (!comboIndex) comboIndex = buildComboIndex();
@@ -924,21 +882,6 @@ function renderComboBox() {
     ? "該当するコンボはありません"
     : `${what} ${heads.length}件、コンボ ${pairs}組` +
       (reverse ? "（各技の前に出せる技を表示）" : "（各技の次に出せる技を表示）");
-
-  // かけるのページにだけあるコンボは、別の一覧として分けて出す
-  const groups = new Map();
-  comboIndex.extra.forEach(e => {
-    const head = reverse ? e.to : e.from;
-    const partner = reverse ? e.from : (e.to || { plain: e.toName });
-    if (!head) return; // 技データに無い技は逆引きの見出しにできない
-    if (!headOk(head)) return;
-    if (!groups.has(head.id)) groups.set(head.id, { head, partners: [] });
-    groups.get(head.id).partners.push(partner);
-  });
-  [...groups.values()].sort((a, b) => a.head.id - b.head.id).forEach(g => {
-    comboExtraResult.appendChild(comboGroupItem(g.head, g.partners, reverse));
-  });
-  comboExtraBlock.hidden = groups.size === 0;
 }
 
 comboFilter.addEventListener("input", debounce(renderComboBox, 300));
